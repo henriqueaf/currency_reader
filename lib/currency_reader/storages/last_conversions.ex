@@ -1,4 +1,4 @@
-defmodule CurrencyReader.Storages.LastConvertions do
+defmodule CurrencyReader.Storages.LastConversions do
   use Agent
 
   @list_size_limit 10

@@ -15,7 +15,7 @@ defmodule CurrencyReader.Application do
         start: {CurrencyReader.Scheduler, :start_link, ["BRL"]},
         restart: :permanent
       },
-      {CurrencyReader.Storages.LastConvertions, []}
+      {CurrencyReader.Storages.LastConversions, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

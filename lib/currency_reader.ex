@@ -5,7 +5,7 @@ defmodule CurrencyReader do
 
   alias CurrencyReader.ConvertCurrency
   alias CurrencyReader.Entities.{Currency}
-  alias CurrencyReader.Storages.{LastConvertions}
+  alias CurrencyReader.Storages.{LastConversions}
 
   def convert_currency(from_currency, to_currencies) when is_binary(from_currency) and is_list(to_currencies) do
     from = Currency.create(from_currency)
@@ -23,8 +23,8 @@ defmodule CurrencyReader do
   end
 
   defp handle_response({:ok, response}) do
-    LastConvertions.push(response)
-    IO.inspect(LastConvertions.list)
+    LastConversions.push(response)
+    IO.inspect(LastConversions.list)
   end
   defp handle_response({:error, error}) do
     IO.inspect(error)
