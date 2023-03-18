@@ -6,6 +6,8 @@ defmodule CurrencyReader do
   alias CurrencyReader.ConvertCurrency
   alias CurrencyReader.Entities.{Currency}
   alias CurrencyReader.Storages.{LastConversions}
+  alias CurrencyReader.ApiClients.{TelegramApi}
+  alias CurrencyReader.Presenters
 
   def convert_currency(from_currency, to_currencies) when is_binary(from_currency) and is_list(to_currencies) do
     from = Currency.create(from_currency)
@@ -23,6 +25,10 @@ defmodule CurrencyReader do
   end
 
   defp handle_response({:ok, response}) do
+    response
+    |> Presenters.Conversion.to_string()
+    |> TelegramApi.send_message()
+
     LastConversions.push(response)
     IO.inspect(LastConversions.list)
   end
