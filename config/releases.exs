@@ -7,5 +7,7 @@ import Config
 # we created this file, config/releases.exs.
 config :currency_reader,
   currency_api_url: System.fetch_env!("CURRENCY_API_URL"),
-  currency_api_key: System.fetch_env!("CURRENCY_API_KEY")
+  currency_api_key: System.fetch_env!("CURRENCY_API_KEY"),
+  telegram_api_url: System.get_env("TELEGRAM_API_URL"),
+  telegram_api_chat_id: System.get_env("TELEGRAM_API_CHAT_ID")
 
