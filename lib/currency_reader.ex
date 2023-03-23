@@ -4,7 +4,7 @@ defmodule CurrencyReader do
   """
 
   alias CurrencyReader.ConvertCurrency
-  alias CurrencyReader.Entities.{Currency}
+  alias CurrencyReader.Entities.{Currency, Conversion}
   alias CurrencyReader.Storages.{LastConversions}
   alias CurrencyReader.ApiClients.{TelegramApi}
   alias CurrencyReader.Presenters
@@ -26,11 +26,12 @@ defmodule CurrencyReader do
 
   defp handle_response({:ok, response}) do
     response
+    |> Conversion.create()
     |> Presenters.Conversion.to_string()
     |> TelegramApi.send_message()
 
     LastConversions.push(response)
-    IO.inspect(LastConversions.list)
+    LastConversions.list
   end
   defp handle_response({:error, error}) do
     IO.inspect(error)
