@@ -31,7 +31,7 @@ defmodule CurrencyReader do
     |> TelegramApi.send_message()
 
     LastConversions.push(response)
-    LastConversions.list
+    IO.inspect(LastConversions.list)
   end
   defp handle_response({:error, error}) do
     IO.inspect(error)

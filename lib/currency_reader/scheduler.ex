@@ -26,7 +26,7 @@ defmodule CurrencyReader.Scheduler do
   end
 
   defp schedule_process_message(execute_immediately) do
-    execute_in = if execute_immediately, do: 0, else: 1000 * 60 * 60 * 5 # 5h in milliseconds
+    execute_in = if execute_immediately, do: 0, else: 1000 * 60 * 60 * 12 # 12h in milliseconds
 
     Process.send_after(self(), :convert_currency, execute_in)
   end
